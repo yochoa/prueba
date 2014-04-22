@@ -11,15 +11,18 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form id="usuario" method="post" action="../controller/usuariocontroller.php?type=1">
-         Nombre:
-         <input type="text" name="usuario" />
-         <br />
-         
-         <input type="submit" value="Buscar" />
-            
-            
-            
+        <form id="usuario" method="post" action="../controller/usuariocontroller.php?type=<?php
+              if (isset($_REQUEST['el'])) {
+                  echo 2;
+              } else {
+                  echo 1;
+              }
+              ?>">
+            Nombre:
+            <input type="text" name="usuario" />
+            <br />
+
+            <input type="submit" value="Buscar" />
         </form>
     </body>
 </html>

@@ -36,37 +36,33 @@ class usuariocontroller {
         if (isset($nombre)) {
             $usuario = new cliente();
             $usuarioImp = new usuarioImp();
-            
-          $usu = $usuarioImp->BuscarUsuario($nombre);
-//          print_r("golffffff");
-          if(!is_null($usu))
-          {
-            return $usu;  
-          }else
-          {
-              return "Hola" ;
-          }
+
+            $usu = $usuarioImp->BuscarUsuario($nombre);
+            if (!is_null($usu)) {
+                return $usu;
+            } else {
+                return "Hola";
+            }
         }
     }
- }
 
+}
 
 if (isset($_GET['type']) && $_GET['type'] == 0) {
     $u = new usuariocontroller();
     $u->Agregar();
-} else {
+} elseif (isset($_GET['type']) && $_GET['type'] == 1) {
     $u = new usuariocontroller();
-   $result= $u->Buscar();
-    if($result!='Hola')
-    {
+    $result = $u->Buscar();
+    if ($result != 'Hola') {
         echo $result->nombre;
         echo '<br/>';
         echo $result->apellido;
-        
-    }else
-    {
+    } else {
         echo "no se encontro";
     }
+} else {
+    echo "eliminar";
 }
 
 
