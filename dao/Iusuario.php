@@ -14,4 +14,5 @@
 interface Iusuario {
 public function AgregarUsuario(cliente $usu);
 public function EliminarUsuario($id);
+public function  BuscarUsuario($nombre);
 }

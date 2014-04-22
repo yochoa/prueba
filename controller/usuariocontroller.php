@@ -14,9 +14,10 @@
 include_once '../models/cliente.php';
 include_once '../dao/Iusuario.php';
 include_once '../dao/usuarioImp.php';
+
 class usuariocontroller {
-    
-public  function Agregar() {
+
+    public function Agregar() {
 //        $c = new conn();
 //        $c->conectar();
         $nombre = $_REQUEST["usuario"];
@@ -29,8 +30,43 @@ public  function Agregar() {
             $usuarioImp->AgregarUsuario($usuario);
         }
     }
-    
+
+    public function Buscar() {
+        $nombre = $_REQUEST["usuario"];
+        if (isset($nombre)) {
+            $usuario = new cliente();
+            $usuarioImp = new usuarioImp();
+            
+          $usu = $usuarioImp->BuscarUsuario($nombre);
+//          print_r("golffffff");
+          if(!is_null($usu))
+          {
+            return $usu;  
+          }else
+          {
+              return "Hola" ;
+          }
+        }
+    }
+ }
+
+
+if (isset($_GET['type']) && $_GET['type'] == 0) {
+    $u = new usuariocontroller();
+    $u->Agregar();
+} else {
+    $u = new usuariocontroller();
+   $result= $u->Buscar();
+    if($result!='Hola')
+    {
+        echo $result->nombre;
+        echo '<br/>';
+        echo $result->apellido;
+        
+    }else
+    {
+        echo "no se encontro";
+    }
 }
-$u = new usuariocontroller();
-$u->Agregar();
+
 
