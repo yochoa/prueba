@@ -21,7 +21,7 @@ class usuarioImp implements Iusuario {
     public function AgregarUsuario(cliente $usu) {
         $con = new conn();
         $con->conectar();
-        clientes::create(array('nombre' => $usu->getNombre(), 'apellido' => $usu->getApellido(), 'cp' => $usu->getCp(), 'telf' => $usu->getTelf()));
+      return  clientes::create(array('nombre' => $usu->getNombre(), 'apellido' => $usu->getApellido(), 'cp' => $usu->getCp(), 'telf' => $usu->getTelf()));
     }
 
     public function EliminarUsuario($id) {

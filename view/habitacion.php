@@ -1,6 +1,11 @@
 <?php
 include_once '../models/habitacion.php';
-$habitaciones = habitacion::find('all');
+include '../models/conn.php';
+$conn = new conn();
+$conn->conectar();
+$habitaciones = habitacion::first();
+print_r($habitaciones->to_json());
+//print_r(count($habitaciones));
 ?>
 
 <html>
@@ -13,13 +18,16 @@ $habitaciones = habitacion::find('all');
         <div>
             <form id="habitacion" method="post" action="">
                 Seleccione la habitacion:
-                <select name="operacion">
+                <select name="operacion" id="operacion" >
                     <?php
                     foreach ($habitaciones as $value) {
-                        echo "<option value='" . $value->numero . "'></option>";
+                        echo "<option value='" . $value->numero . "'> " . $value->numero . " </option>";
                     }
                     ?> 
                 </select>
+                <br/>
+                Costo:
+                <input type="text" name="costo" id="costo" disabled="true">
             </form>
         </div>
     </body>

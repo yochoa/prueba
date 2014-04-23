@@ -11,6 +11,7 @@
  *
  * @author yuniel
  */
+include_once '../lib/ActiveRecord/ActiveRecord.php';
 class reservacion extends ActiveRecord\Model{
     static $table_name = 'reservacion';
 }
