@@ -16,23 +16,32 @@ $habitaciones = habitacion::all();
         <title>Reservacion</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <script>
+            $(function() {
+                $("#entrada").datepicker();
+                $("#salida").datepicker();
+            });
+        </script>
     </head>
     <body>
         <div>
-            <form id="usuario" method="post" action="./controller/usuariocontroller.php">
-         Nombre:
-         <input type="text" name="usuario" />
-         <br />
-         Apellido
-         <input type="text" name="apellido" />
-         <br />
-         Cp
-         <input type="text" name="cp" />
-         <br />
-         Tel:
-         <input type="text" name="telf" />
-         <br />
-         Seleccione la habitacion:
+            <form id="usuario" method="post" action="../controller/reservacioncontroller.php">
+                Nombre:
+                <input type="text" name="usuario" />
+                <br />
+                Apellido
+                <input type="text" name="apellido" />
+                <br />
+                Cp
+                <input type="text" name="cp" />
+                <br />
+                Tel:
+                <input type="text" name="telf" />
+                <br />
+                Seleccione la habitacion:
                 <select name="operacion" id="operacion" >
                     <?php
                     foreach ($habitaciones as $value) {
@@ -40,9 +49,13 @@ $habitaciones = habitacion::all();
                     }
                     ?> 
                 </select>
-         <br/>
-         <input type="submit" value="Reservar"  />
-        </form>
+                <br/>
+                <p>Fecha entrada: <input type="text" id="entrada" name="fentrada"></p>
+                <br />
+                <p>Fecha salida: <input type="text" id="salida" name="fsalida"></p>
+                <!--<br />-->
+                <input type="submit" value="Reservar"  />
+            </form>
         </div>
     </body>
-</html>
+

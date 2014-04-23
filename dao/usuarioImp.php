@@ -42,6 +42,19 @@ class usuarioImp implements Iusuario {
         }
     }
 
+    public function AllUsuario() {
+        $con = new conn();
+        $con->conectar();
+                $cliente1 = clientes::all();
+         
+        if (count($cliente1) > 0) {
+            
+            return $cliente1;
+        } else {
+            return null;
+        }
+    }
+    
     public function BuscarUsuario($nomb) {
         $con = new conn();
         $con->conectar();
@@ -50,6 +63,18 @@ class usuarioImp implements Iusuario {
         if (count($cliente) > 0) {
             
             return $cliente[0];
+        } else {
+            return null;
+        }
+    }
+    public function UsuarioId($id) {
+        $con = new conn();
+        $con->conectar();
+        $cl = clientes::all(array('conditions'=>array('idclinte',(int)$id)));
+         
+        if (count($cl) > 0) {
+            
+            return $cl[0];
         } else {
             return null;
         }

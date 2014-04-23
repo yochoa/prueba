@@ -14,12 +14,13 @@
 include_once '../models/cliente.php';
 include_once '../dao/Iusuario.php';
 include_once '../dao/usuarioImp.php';
+include_once '../models/conn.php';
 
 class usuariocontroller {
 
     public function Agregar() {
-//        $c = new conn();
-//        $c->conectar();
+        $c = new conn();
+        $c->conectar();
         $nombre = $_REQUEST["usuario"];
         $apellido = $_REQUEST["apellido"];
         $cp = $_REQUEST["cp"];
@@ -54,8 +55,21 @@ class usuariocontroller {
 }
 
 if (isset($_GET['type']) && $_GET['type'] == 0) {
+
     $u = new usuariocontroller();
     $u->Agregar();
+    echo "jhjsdhjsd";
+} elseif (isset($_GET['type']) && trim($_GET['type']) == 9) {
+    $c = new conn();
+    $c->conectar();
+    $cliente = new clientes();
+    $cliente->nombre = $_REQUEST['usuario'];
+    $cliente->idclinte = $_REQUEST['id'];
+    $cliente->apellido = $_REQUEST['apellido'];
+    $cliente->cp = $_REQUEST['cp'];
+    $cliente->telf = $_REQUEST['telf'];
+    $cliente->save();
+    print_r($cliente);
 } else {
     $u = new usuariocontroller();
     $result = $u->Buscar();
