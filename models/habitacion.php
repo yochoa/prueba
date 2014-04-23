@@ -11,6 +11,7 @@
  *
  * @author yuniel
  */
+include_once '../lib/ActiveRecord/ActiveRecord.php';
 class habitacion extends ActiveRecord\Model {
-    static $tablw_name ='usuario';
+    static $table_name ='usuario';
 }

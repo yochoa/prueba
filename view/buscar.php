@@ -24,5 +24,6 @@ and open the template in the editor.
 
             <input type="submit" value="Buscar" />
         </form>
+       
     </body>
 </html>

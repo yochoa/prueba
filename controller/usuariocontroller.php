@@ -33,16 +33,21 @@ class usuariocontroller {
 
     public function Buscar() {
         $nombre = $_REQUEST["usuario"];
-        if (isset($nombre)) {
+        if (strlen($nombre) > 0) {
+
             $usuario = new cliente();
             $usuarioImp = new usuarioImp();
 
             $usu = $usuarioImp->BuscarUsuario($nombre);
+
             if (!is_null($usu)) {
                 return $usu;
             } else {
                 return "Hola";
             }
+        } else {
+            print_r($nombre);
+            return "empty";
         }
     }
 
@@ -51,18 +56,31 @@ class usuariocontroller {
 if (isset($_GET['type']) && $_GET['type'] == 0) {
     $u = new usuariocontroller();
     $u->Agregar();
-} elseif (isset($_GET['type']) && $_GET['type'] == 1) {
+} else {
     $u = new usuariocontroller();
     $result = $u->Buscar();
-    if ($result != 'Hola') {
-        echo $result->nombre;
-        echo '<br/>';
-        echo $result->apellido;
-    } else {
+    if ($result != 'Hola' && $result != "empty") {
+        if (isset($_GET['type']) && $_GET['type'] == 1) {
+            echo $result->nombre;
+            echo '<br/>';
+            echo $result->apellido;
+        } elseif (isset($_GET['type']) && $_GET['type'] == 2) {
+            $usuarioImp = new usuarioImp();
+            $result = $usuarioImp->EliminarUsuario($result->idclinte);
+            if ($result) {
+                echo "Se elimino el cliente";
+            } else {
+                echo "No se elimino el cliente";
+            }
+        }
+    } elseif ($result != 'empty') {
         echo "no se encontro";
-    }
-} else {
-    echo "eliminar";
-}
+    } else {
 
+        header("location:../view/buscar.php");
+        echo'<script type="text/javascript">
+                alert("Debe llenar el campo");
+                </script>';
+    }
+} 
 
