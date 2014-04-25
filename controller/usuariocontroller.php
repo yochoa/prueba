@@ -58,18 +58,17 @@ if (isset($_GET['type']) && $_GET['type'] == 0) {
 
     $u = new usuariocontroller();
     $u->Agregar();
-    echo "jhjsdhjsd";
+    
 } elseif (isset($_GET['type']) && trim($_GET['type']) == 9) {
     $c = new conn();
     $c->conectar();
-    $cliente = new clientes();
-    $cliente->nombre = $_REQUEST['usuario'];
-    $cliente->idclinte = $_REQUEST['id'];
-    $cliente->apellido = $_REQUEST['apellido'];
-    $cliente->cp = $_REQUEST['cp'];
-    $cliente->telf = $_REQUEST['telf'];
-    $cliente->save();
-    print_r($cliente);
+    $cli=  clientes::find_by_idclinte((int)$_REQUEST['id']);
+    $cli->nombre = $_REQUEST['usuario'];
+    $cli->apellido = $_REQUEST['apellido'];
+    $cli->cp = $_REQUEST['cp'];
+    $cli->telf = $_REQUEST['telf'];
+    $cli->save();
+    
 } else {
     $u = new usuariocontroller();
     $result = $u->Buscar();

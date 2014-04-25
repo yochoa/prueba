@@ -7,7 +7,7 @@ and open the template in the editor.
 <?php
 include_once '../dao/usuarioImp.php';
 if (isset($_REQUEST['iden'])) {
-    $id = print_r($_REQUEST['iden']);
+    $id = $_REQUEST['iden'];
     $dao = new usuarioImp();
     $cl = $dao->UsuarioId($id);
     

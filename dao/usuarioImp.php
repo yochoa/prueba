@@ -70,11 +70,11 @@ class usuarioImp implements Iusuario {
     public function UsuarioId($id) {
         $con = new conn();
         $con->conectar();
-        $cl = clientes::all(array('conditions'=>array('idclinte',(int)$id)));
+        $cl = clientes::find_by_idclinte((int)$id);
          
         if (count($cl) > 0) {
             
-            return $cl[0];
+            return $cl;
         } else {
             return null;
         }
