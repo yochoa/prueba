@@ -55,6 +55,7 @@ class usuariocontroller {
                 return "empty";
             }
         }
+        echo 'holaaa';
         require 'buscar.php';
     }
 
