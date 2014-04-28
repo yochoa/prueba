@@ -7,14 +7,13 @@ $map = array(
     'buscar' => array('controller' => 'Controller', 'action' => 'buscarPorNombre'),
     'ver' => array('controller' => 'Controller', 'action' => 'ver')
 );
+$accion = "";
 if (!empty($_GET['url'])) {
     $accion = $_GET['url'];
-} else {
-    $accion = $accionPredefinida;
 }
 
-$accion = '_' . preg_replace('/[^a-zA-Z0-9]/', '', $accion);
 $controlador = $map[$accion];
+print_r($controlador);
 
 if(method_exists('controller/usuariocontroller.php', $accion))
 {
